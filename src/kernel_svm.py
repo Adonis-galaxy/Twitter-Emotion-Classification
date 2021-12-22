@@ -11,10 +11,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVC
 
 # model = svm.LinearSVC()
-model = Pipeline([
-                                ("scaler", StandardScaler()), 
-                                ("svm_clf", SVC(kernel="rbf", gamma=5, C=0.001))
-                            ])
+model = Pipeline([ ( "scaler", StandardScaler()),
+                                 ("svm_clf", SVC(kernel="poly", degree=3, coef0=1, C=0.5))
+                                ])
+
 
 baseline(model)
 
