@@ -20,9 +20,7 @@ def baseline(model = MLPRegressor( hidden_layer_sizes=(16),  activation='tanh', 
     val_labels = np.array(load_label("val_labels"))
     test_text = load_text("test_text")
     test_labels = np.array(load_label("test_labels"))
-
     # %%
-
     from build_histogram import histogram_building
     histogram = histogram_building(train_text)
     num_feature = len(histogram) # 12887
@@ -32,7 +30,6 @@ def baseline(model = MLPRegressor( hidden_layer_sizes=(16),  activation='tanh', 
     train_labels_processed = label_preprocessing(num_train,train_labels)
     val_data,num_val = text_preprocessing(val_text,tokens,num_feature)
     val_labels_processed = label_preprocessing(num_val,val_labels)
-
     # %%
-    model = trainFunc(model,train_data,train_labels_processed,train_labels,num_train)
+    trainFunc(model,train_data,train_labels_processed,train_labels,num_train)
     validation(model,val_data,val_labels,num_val)

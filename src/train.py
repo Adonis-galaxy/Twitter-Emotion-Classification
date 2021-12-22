@@ -11,17 +11,14 @@ def trainFunc(model,train_data,train_labels_processed,train_labels,num_train):
         model.fit(train_data.T, train_labels_processed)
         train_accuracy = sum(model.predict(train_data.T).argmax(1) == train_labels) / num_train
         print("train acc",train_accuracy)
-        return model
     elif type(model) == KNeighborsClassifier:
         model.fit(train_data.T, train_labels)
         train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
         print("train acc",train_accuracy)
-        return model
     elif type(model) == sklearn.pipeline.Pipeline or svm.LinearSVC : 
         model.fit(train_data.T, train_labels)
         train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
         print("train acc",train_accuracy)
-        return model
     else:
         raise RuntimeError("What model? Write your model train function here")
     
