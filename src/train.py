@@ -4,7 +4,7 @@ from sklearn import svm
 import sklearn
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
-from label_preprocess import label_preprocessing
+from data_process.label_preprocess import label_preprocessing
 def trainFunc(model,train_data,train_labels,num_train):
     # model=MLPRegressor( hidden_layer_sizes=(16),  activation='tanh', solver='adam')
     print("type of the model:",type(model))

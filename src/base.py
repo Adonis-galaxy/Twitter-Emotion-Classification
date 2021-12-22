@@ -6,12 +6,14 @@ import pandas as pd
 from matplotlib.font_manager import FontProperties
 import numpy as np
 from sklearn.neural_network import MLPRegressor
-from text_preprocess import text_preprocessing
-from label_preprocess import label_preprocessing
+import sys
+
+from data_process.text_preprocess import text_preprocessing
+from data_process.label_preprocess import label_preprocessing
 from train import trainFunc
 from val import validation
-from fileloader import load_text,load_label
-from build_histogram import histogram_building
+from data_process.fileloader import load_text,load_label
+from data_process.build_histogram import histogram_building
 from sklearn.svm import LinearSVC
 
 def baseline(model = LinearSVC()):
