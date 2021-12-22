@@ -17,7 +17,7 @@ def trainFunc(model,train_data,train_labels,num_train):
         model.fit(train_data.T, train_labels)
         train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
         print("train acc",train_accuracy)
-    elif type(model) == sklearn.pipeline.Pipeline or svm.LinearSVC : 
+    elif type(model) == svm.LinearSVC : 
         model.fit(train_data.T, train_labels)
         train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
         print("train acc",train_accuracy)

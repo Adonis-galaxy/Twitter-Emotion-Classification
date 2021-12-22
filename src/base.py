@@ -12,8 +12,9 @@ from train import trainFunc
 from val import validation
 from fileloader import load_text,load_label
 from build_histogram import histogram_building
+from sklearn.svm import LinearSVC
 
-def baseline(model = MLPRegressor( hidden_layer_sizes=(16),  activation='tanh', solver='adam')):
+def baseline(model = LinearSVC()):
     # %%
     # load datasets
     train_text = load_text("train_text")
@@ -32,3 +33,6 @@ def baseline(model = MLPRegressor( hidden_layer_sizes=(16),  activation='tanh', 
     # %%
     trainFunc(model,train_data,train_labels,num_train)
     validation(model,val_data,val_labels,num_val)
+# %%
+if __name__ == '__main__':
+    baseline()
