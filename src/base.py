@@ -34,7 +34,8 @@ def baseline(model = LinearSVC()):
     val_data,num_val = text_preprocessing(val_text,tokens,num_feature)
     # %%
     trainFunc(model,train_data,train_labels,num_train)
-    validation(model,val_data,val_labels,num_val)
+    val_acc=validation(model,val_data,val_labels,num_val)
+    return val_acc
 # %%
-if __name__ == '__main__':
-    baseline()
+# if __name__ == '__main__':
+#     baseline()
