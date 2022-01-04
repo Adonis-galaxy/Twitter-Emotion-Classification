@@ -8,6 +8,6 @@ def text_preprocessing(text,tokens,num_feature):
             try:
                 index = tokens.index(word)
                 data[index,i]+=1
-            except ValueError: # some data in val may not appeat in training set
+            except ValueError: # some data in val may not appear in training set
                 pass
     return data,num_data
