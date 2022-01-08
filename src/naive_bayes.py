@@ -4,6 +4,6 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import BernoulliNB  
 from sklearn.naive_bayes import ComplementNB  
 from base import baseline
-gnb = ComplementNB(alpha=1.1)
-baseline(gnb)
+model = ComplementNB(alpha=1.1)
+baseline(model)
 
