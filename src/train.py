@@ -13,34 +13,8 @@ def trainFunc(model,train_data,train_labels,num_train):
         model.fit(train_data.T, train_labels_processed)
         train_accuracy = sum(model.predict(train_data.T).argmax(1) == train_labels) / num_train
         print("\ntrain acc",train_accuracy)
-    elif type(model) == KNeighborsClassifier:
-        model.fit(train_data.T, train_labels)
-        train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
-        print("\ntrain acc",train_accuracy)
-    elif type(model) == svm.LinearSVC : 
-        model.fit(train_data.T, train_labels)
-        train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
-        print("\ntrain acc",train_accuracy)
-    elif type(model) == svm.SVC : 
-        model.fit(train_data.T, train_labels)
-        train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
-        print("\ntrain acc",train_accuracy)
-    elif type(model) == sklearn.naive_bayes.BernoulliNB: 
-        train_labels_processed = label_preprocessing(num_train,train_labels)
-        model.fit(train_data.T, train_labels)
-        train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
-        print("\ntrain acc",train_accuracy)
-    elif type(model) == sklearn.naive_bayes.GaussianNB: 
-        train_labels_processed = label_preprocessing(num_train,train_labels)
-        model.fit(train_data.T, train_labels)
-        train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
-        print("\ntrain acc",train_accuracy)
-    elif type(model) == sklearn.naive_bayes.ComplementNB: 
-        train_labels_processed = label_preprocessing(num_train,train_labels)
-        model.fit(train_data.T, train_labels)
-        train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
-        print("\ntrain acc",train_accuracy)
     else:
-        print(type(model))
-        raise RuntimeError("What model? Write your model train function here")
+        model.fit(train_data.T, train_labels)
+        train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
+        print("\ntrain acc",train_accuracy)
     
