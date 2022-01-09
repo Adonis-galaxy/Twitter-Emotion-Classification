@@ -7,6 +7,8 @@ from sklearn import datasets       #导入数据模块
 from sklearn.model_selection import train_test_split     #导入切分训练集、测试集模块
 from sklearn.neighbors import KNeighborsClassifier
 from base import baseline
-
-model = KNeighborsClassifier(n_neighbors=4)
-baseline(model)
+def _knn():
+    model = KNeighborsClassifier(n_neighbors=4)
+    baseline(model)
+if __name__ == '__main__':
+    _knn()
