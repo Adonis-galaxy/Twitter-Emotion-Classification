@@ -16,16 +16,3 @@ def training(model,train_data,train_labels,num_train,val_data,val_labels,num_val
         model.fit(train_data.T, train_labels)
         train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
         print("\ntrain acc",train_accuracy)
-
-
-
-        
-    # if type(model) == MLPRegressor:
-    #     train_labels = label_preprocessing(num_train,train_labels)
-    # model.fit(train_data.T, train_labels)
-    # if type(model) == MLPRegressor:
-    #     train_accuracy = sum(model.predict(train_data.T).argmax(1) == train_labels) / num_train
-    # else:
-    #     train_accuracy = sum(model.predict(train_data.T) == train_labels) / num_train
-    # print("\ntrain acc",train_accuracy)
-    

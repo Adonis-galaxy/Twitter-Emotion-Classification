@@ -55,47 +55,5 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
                     f.write("\n")
             except IndexError:
                 pass
-        
-
-
-
-
-
-    # 
-    # ]
-    # if type(model) == sklearn.svm._classes.LinearSVC:
-    #     with open(r"./example/linear_svm/anger/correct.txt","w") as f:
-    #         for i in range(10):
-    #             f.write(correct_prediction[0][i])
-    #             f.write("\n")
-    #     with open(r"./example/linear_svm/anger/wrong.txt","w") as f:
-    #         for i in range(10):
-    #             f.write(wrong_prediction[0][i])
-    #             f.write("\n")
-    #     with open(r"./example/linear_svm/joy/correct.txt","w") as f:
-    #         for i in range(10):
-    #             f.write(correct_prediction[1][i])
-    #             f.write("\n")
-    #     with open(r"./example/linear_svm/joy/wrong.txt","w") as f:
-    #         for i in range(10):
-    #             f.write(wrong_prediction[1][i])
-    #             f.write("\n")
-    #     with open(r"./example/linear_svm/optimism/correct.txt","w") as f:
-    #         for i in range(10):
-    #             f.write(correct_prediction[2][i])
-    #             f.write("\n")
-    #     with open(r"./example/linear_svm/optimism/wrong.txt","w") as f:
-    #         for i in range(10):
-    #             f.write(wrong_prediction[2][i])
-    #             f.write("\n")
-    #     with open(r"./example/linear_svm/sadness/correct.txt","w") as f:
-    #         for i in range(10):
-    #             f.write(correct_prediction[3][i])
-    #             f.write("\n")
-    #     with open(r"./example/linear_svm/sadness/wrong.txt","w") as f:
-    #         for i in range(10):
-    #             f.write(wrong_prediction[4][i])
-    #             f.write("\n")
-        
     return true_test/num_test
     
