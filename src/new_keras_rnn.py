@@ -85,29 +85,29 @@ sadness_test_seq_mat = sequence.pad_sequences(sadness_test_seq, maxlen=max_len)
 Change the name of that line leads to the switch.'''
 inputs = keras.layers.Input(name='inputs', shape=[max_len])
 layer = keras.layers.Embedding(max_words+1, 128, input_length=max_len)(inputs)
-layer = keras.layers.SimpleRNN(128)(layer) #For switching between SimpleRNN and LSTM
-layer = keras.layers.Dense(128,activation="relu", name="FC1")(layer)
+layer = keras.layers.SimpleRNN(128)(layer)  # For switching between SimpleRNN and LSTM
+layer = keras.layers.Dense(128, activation="relu")(layer)
 layer = keras.layers.Dropout(0.7)(layer)
-layer = keras.layers.Dense(4,activation="softmax", name="FC2")(layer)
-model = keras.Model(inputs=inputs,outputs=layer)
-model.summary()
-model.compile(loss="categorical_crossentropy",optimizer=keras.optimizers.Adam(),metrics=["accuracy"])
+layer = keras.layers.Dense(4, activation="softmax")(layer)
+model = keras.Model(inputs=inputs, outputs=layer)
+
+# model.summary()
+model.compile(loss="categorical_crossentropy", optimizer=keras.optimizers.Adam(), metrics=["accuracy"])
 
 '''The convergence of simple RNN is too slow that
 early stopping normally exits incorrectly.'''
-model_fit = model.fit(train_seq_mat,Y_train,batch_size=128,epochs=10,
-                      validation_data=(val_seq_mat,Y_val),
-                      # callbacks=[keras.callbacks.EarlyStopping(monitor='val_loss',min_delta=0.00001)]
+model_fit = model.fit(train_seq_mat, Y_train, batch_size=128, epochs=10,
+                      validation_data=(val_seq_mat, Y_val),
                      )
 
 test_loss, test_acc = model.evaluate(test_seq_mat, Y_test)
-print("Test loss: ", test_loss," Test acc: ", test_acc)
+print("Test loss: ", test_loss, " Test acc: ", test_acc)
 
 anger_test_loss, anger_test_acc = model.evaluate(anger_test_seq_mat, anger_Y_test)
-print("ANGER Test loss: ", anger_test_loss," ANGER Test acc: ", anger_test_acc)
+print("ANGER Test loss: ", anger_test_loss, " ANGER Test acc: ", anger_test_acc)
 joy_test_loss, joy_test_acc = model.evaluate(joy_test_seq_mat, joy_Y_test)
-print("JOY Test loss: ", joy_test_loss," JOY Test acc: ", joy_test_acc)
+print("JOY Test loss: ", joy_test_loss, " JOY Test acc: ", joy_test_acc)
 optimism_test_loss, optimism_test_acc = model.evaluate(optimism_test_seq_mat, optimism_Y_test)
-print("OPTIMISM Test loss: ", optimism_test_loss," OPTIMISM Test acc: ", optimism_test_acc)
+print("OPTIMISM Test loss: ", optimism_test_loss, " OPTIMISM Test acc: ", optimism_test_acc)
 sadness_test_loss, sadness_test_acc = model.evaluate(sadness_test_seq_mat, sadness_Y_test)
-print("SADNESS Test loss: ", sadness_test_loss," SADNESS Test acc: ", sadness_test_acc)
+print("SADNESS Test loss: ", sadness_test_loss, " SADNESS Test acc: ", sadness_test_acc)
