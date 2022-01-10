@@ -1,6 +1,4 @@
 import numpy as np
-
-
 def text_preprocessing(text,tokens,num_feature, bag=1):
     num_data = len(text)
     data = np.zeros(shape=(num_feature, num_data))
@@ -19,5 +17,3 @@ def text_preprocessing(text,tokens,num_feature, bag=1):
                 except ValueError: # some data in val may not appear in training set
                     pass
     return data, num_data
-
-

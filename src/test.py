@@ -39,6 +39,9 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
             wrong_prediction[predict_test[i]].append((row_test_data[i],mapping[test_labels[i]]))
             FN[test_labels[i]]+=1
             FP[predict_test[i]]+=1
+            for h in range(4):
+                if h != predict_test[i] and h != test_labels[i]:
+                    TN[h] +=1
     # print("TP",TP)
     for i in range(4):
         precision[i] = TP[i] / (TP[i] + FP[i])
@@ -83,12 +86,9 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
                 pass
         with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/F1_score.txt","w") as f:
             f.write(str(F1_score[k]))
-    os.system(r"touch ./example/"+model_names[model_index] + r"/m_F1.txt")
+    # os.system(r"touch ./example/"+model_names[model_index] + r"/m_F1.txt")
 
     with open(r"./example/"+model_names[model_index] + r"/m_F1.txt","w") as f:
         f.write(str(sum(precision)/4))
-
-    
-    # print("TP",TP)
     return true_test/num_test
     
