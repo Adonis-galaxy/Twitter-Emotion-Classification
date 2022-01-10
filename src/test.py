@@ -53,7 +53,7 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
             try:
                 for i in range(10):
                     f.write(wrong_prediction[k][i][0])
-                    f.write("Ground truth: ")
+                    f.write(" || Ground truth: ")
                     f.write(wrong_prediction[k][i][1])
                     f.write("\n")
             except IndexError:
