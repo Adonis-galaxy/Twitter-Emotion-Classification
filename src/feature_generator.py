@@ -1,9 +1,4 @@
-import sklearn
-import numpy as np
-from data_process.text_preprocess import text_preprocessing
-from data_process.label_preprocess import label_preprocessing
 from data_process.fileloader import load_text, load_label
-from data_process.build_histogram import histogram_building
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 
@@ -22,7 +17,7 @@ def feature_set():
         for i in range(len(data)):
             temp.append((indice[i], data[i]))
         temp.sort(key=lambda x: -x[1])
-        for i in range(min(len(temp), 3)):
+        for i in range(min(len(temp), 4)):
             word = dic[temp[i][0]]
             if word not in feature:
                 feature.append(word)
