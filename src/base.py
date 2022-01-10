@@ -17,7 +17,7 @@ from data_process.build_histogram import histogram_building
 from feature_generator import feature_set
 from sklearn.svm import LinearSVC
 
-def baseline(model = LinearSVC(), ):
+def baseline(model = LinearSVC(), TF_ID=False):
     # %%
     # load datasets
     train_text = load_text("train_text")
@@ -27,13 +27,16 @@ def baseline(model = LinearSVC(), ):
     test_text = load_text("test_text")
     test_labels = np.array(load_label("test_labels"))
     # %%
-    histogram = histogram_building(train_text, bag=3)
+    histogram = histogram_building(train_text, bag=1)
     num_feature = len(histogram) # 12887
-    tokens = list(histogram.index)
-    print("dimension = ", num_feature)
-    train_data,num_train = text_preprocessing(train_text,tokens,num_feature, bag=3)
-    val_data,num_val = text_preprocessing(val_text,tokens,num_feature, bag=3)
-    test_data,num_test = text_preprocessing(test_text,tokens,num_feature, bag=3)
+    if TF_ID:
+        tokens = feature_set()
+    else:
+        tokens = list(histogram.index)
+    print("dimension = ", len(tokens))
+    train_data,num_train = text_preprocessing(train_text,tokens,num_feature, bag=1)
+    val_data,num_val = text_preprocessing(val_text,tokens,num_feature, bag=1)
+    test_data,num_test = text_preprocessing(test_text,tokens,num_feature, bag=1)
     # %%
     training(model,train_data,train_labels,num_train,val_data,val_labels,num_val)
     test_acc=testing(model,test_data,test_labels,num_test,test_text)
