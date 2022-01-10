@@ -11,7 +11,6 @@ _svm(TF_ID)
 _mlp(TF_ID)
 _naive_bayes(TF_ID)
 
-
 _rnn_and_lstm(0)  #rnn
 _rnn_and_lstm(1)  #lstm
 _transformer()

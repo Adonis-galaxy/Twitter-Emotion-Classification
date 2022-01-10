@@ -1,39 +1,43 @@
-dimension =  7421
+dimension =  12887
 
 type of the model: <class 'sklearn.neighbors._classification.KNeighborsClassifier'>
 
-train acc 0.6478354313785692
-test acc: 0.35608726249120337
-anger prediction acc: 0.5089605734767025
-joy prediction acc: 0.27932960893854747
-optimism prediction acc: 0.04878048780487805
-sadness prediction acc: 0.3036649214659686
-dimension =  7421
+train acc 0.6248081056186675
+test acc: 0.39619985925404644
+anger prediction acc: 0.7795698924731183
+joy prediction acc: 0.1564245810055866
+optimism prediction acc: 0.016260162601626018
+sadness prediction acc: 0.18324607329842932
+TP [0.5, 0.5, 0.5, 0.5]
+dimension =  12887
 
 type of the model: <class 'sklearn.svm._classes.LinearSVC'>
 
-train acc 0.9186367823150138
-test acc: 0.5186488388458832
-anger prediction acc: 0.7043010752688172
-joy prediction acc: 0.38268156424581007
-optimism prediction acc: 0.10569105691056911
-sadness prediction acc: 0.5078534031413613
-dimension =  7421
+train acc 0.9963156278784158
+test acc: 0.6157635467980296
+anger prediction acc: 0.7724014336917563
+joy prediction acc: 0.5446927374301676
+optimism prediction acc: 0.21951219512195122
+sadness prediction acc: 0.581151832460733
+TP [0.5, 0.5, 0.5, 0.5]
+dimension =  12887
 
 type of the model: <class 'sklearn.neural_network._multilayer_perceptron.MLPRegressor'>
-train acc 0.8661344795824378
-test acc: 0.5249824067558058
-anger prediction acc: 0.7060931899641577
-joy prediction acc: 0.43854748603351956
-optimism prediction acc: 0.08130081300813008
-sadness prediction acc: 0.48429319371727747
-dimension =  7421
+train acc 0.9914031317163033
+test acc: 0.6164672765657987
+anger prediction acc: 0.7258064516129032
+joy prediction acc: 0.5754189944134078
+optimism prediction acc: 0.1951219512195122
+sadness prediction acc: 0.6308900523560209
+TP [0.5, 0.5, 0.5, 0.5]
+dimension =  12887
 
 type of the model: <class 'sklearn.naive_bayes.ComplementNB'>
 
-train acc 0.829290758366595
-test acc: 0.5186488388458832
-anger prediction acc: 0.8530465949820788
-joy prediction acc: 0.3128491620111732
-optimism prediction acc: 0.07317073170731707
-sadness prediction acc: 0.36649214659685864
+train acc 0.9646914338348174
+test acc: 0.6291344123856439
+anger prediction acc: 0.8387096774193549
+joy prediction acc: 0.4720670391061452
+optimism prediction acc: 0.2845528455284553
+sadness prediction acc: 0.581151832460733
+TP [0.5, 0.5, 0.5, 0.5]
