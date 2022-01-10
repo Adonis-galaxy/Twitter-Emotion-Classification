@@ -4,6 +4,7 @@ from sklearn import svm
 from sklearn.svm import SVC
 import sklearn
 from sklearn.neighbors import KNeighborsClassifier
+mapping=["anger","joy","optimism","sadness"]
 def testing(model,test_data,test_labels,num_test,row_test_data):
     label=[0,0,0,0]
     hit_label=[0,0,0,0]
@@ -20,7 +21,7 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
             hit_label[test_labels[i]] += 1
             correct_prediction[predict_test[i]].append(row_test_data[i])
         else:
-            wrong_prediction[predict_test[i]].append(row_test_data[i])
+            wrong_prediction[predict_test[i]].append((row_test_data[i],mapping[test_labels[i]]))
     print("test acc:", true_test/num_test)
     print("anger prediction acc:",hit_label[0] / label[0])
     print("joy prediction acc:",hit_label[1] / label[1])
@@ -51,7 +52,9 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
         with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/wrong.txt","w") as f:
             try:
                 for i in range(10):
-                    f.write(wrong_prediction[k][i])
+                    f.write(wrong_prediction[k][i][0])
+                    f.write(" || Ground truth: ")
+                    f.write(wrong_prediction[k][i][1])
                     f.write("\n")
             except IndexError:
                 pass

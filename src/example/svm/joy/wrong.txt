@@ -1,10 +1,10 @@
-@user Get Donovan out of your soccer booth. He's awful. He's bitter. He makes me want to mute the tv. #horrid 
-@user Is it just me that thinks it looks boring?  
-yukwon no video do zico the world is shaking 
-OMG we're eating drinking in a restaurant and  so is a baby!!! Quell horror #YummyMummiesAU 
-@user Improve on the makeup dear to avoid reduction in viewership...  
-this person hasn't uploaded episode six or seven of the lodge and i'm  
-@user you look shook! #afraid #shook #impeach #youaregoingdown 
-@user It's an evening for lying around doing feck all. Looks like an October evening down here #miserable 
-@user shocked as well. but bc I cheer for another club in the swiss league… 
-fuckfuckfuck my hands are shaking 
+@user Get Donovan out of your soccer booth. He's awful. He's bitter. He makes me want to mute the tv. #horrid  || Ground truth: anger
+@user Is it just me that thinks it looks boring?   || Ground truth: sadness
+yukwon no video do zico the world is shaking  || Ground truth: sadness
+OMG we're eating drinking in a restaurant and  so is a baby!!! Quell horror #YummyMummiesAU  || Ground truth: anger
+@user Improve on the makeup dear to avoid reduction in viewership...   || Ground truth: sadness
+this person hasn't uploaded episode six or seven of the lodge and i'm   || Ground truth: anger
+@user you look shook! #afraid #shook #impeach #youaregoingdown  || Ground truth: anger
+@user It's an evening for lying around doing feck all. Looks like an October evening down here #miserable  || Ground truth: sadness
+@user shocked as well. but bc I cheer for another club in the swiss league…  || Ground truth: optimism
+fuckfuckfuck my hands are shaking  || Ground truth: anger
