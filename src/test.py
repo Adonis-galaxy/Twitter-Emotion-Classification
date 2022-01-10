@@ -14,6 +14,9 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
     FP = [0,0,0,0]
     FN = [0,0,0,0]
     TN = [0,0,0,0]
+    precision=[0,0,0,0]
+    recall=[0,0,0,0]
+    F1_score=[0,0,0,0]
     true_test=0
     predict_test = model.predict(test_data.T)
     if type(model) == MLPRegressor:
@@ -32,6 +35,11 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
             wrong_prediction[predict_test[i]].append((row_test_data[i],mapping[test_labels[i]]))
             FN[test_labels[i]]+=1
             FP[predict_test[i]]+=1
+    for i in range(4):
+        precision[i] = TP[i] / (TP[i] + FP[i])
+        recall[i] = TP[i] / (TP[i] + FN[i])
+        F1_score[i] = 2 * (precision[i] * recall[i])/(precision[i] + recall[i])
+
     print("test acc:", true_test/num_test)
     print("anger prediction acc:",hit_label[0] / label[0])
     print("joy prediction acc:",hit_label[1] / label[1])
@@ -49,42 +57,30 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
         model_index = 2
     elif type(model) == sklearn.naive_bayes.ComplementNB:
         model_index = 3
-    # for k in range(len(motions)):
-    #     with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/correct.txt","w") as f:
-    #         try:
-    #             for i in range(10):
-    #                 f.write(correct_prediction[k][i])
-    #                 f.write("\n")
-    #         except IndexError:
-    #             pass
-    #     with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/wrong.txt","w") as f:
-    #         try:
-    #             for i in range(10):
-    #                 f.write(wrong_prediction[k][i][0])
-    #                 f.write(" || Ground truth: ")
-    #                 f.write(wrong_prediction[k][i][1])
-    #                 f.write("\n")
-    #         except IndexError:
-    #             pass
-    precision=[0,0,0,0]
-    recall=[0,0,0,0]
-    F1_score=[0,0,0,0]
-    for i in range(4):
-        precision[i] = TP[i] / (TP[i] + FP[i])
-        recall[i] = TP[i] / (TP[i] + FN[i])
-        F1_score[i] = 2 * (precision[i] * recall[i])/(precision[i] + recall[i])
 
-    import os
     for k in range(len(motions)):
-        # os.system(r"touch ./example/"+model_names[model_index] + r"/"+motions[k]+r"/F1_score.txt")
+        with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/correct.txt","w") as f:
+            try:
+                for i in range(10):
+                    f.write(correct_prediction[k][i])
+                    f.write("\n")
+            except IndexError:
+                pass
+        with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/wrong.txt","w") as f:
+            try:
+                for i in range(10):
+                    f.write(wrong_prediction[k][i][0])
+                    f.write(" || Ground truth: ")
+                    f.write(wrong_prediction[k][i][1])
+                    f.write("\n")
+            except IndexError:
+                pass
         with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/F1_score.txt","w") as f:
             f.write(str(F1_score[k]))
-            # try:
-            #     for i in range(10):
-            #         f.write(correct_prediction[k][i])
-            #         f.write("\n")
-            # except IndexError:
-            #     pass
+    
+    
+    
+        
         
 
     return true_test/num_test
