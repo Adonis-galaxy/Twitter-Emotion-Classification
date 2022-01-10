@@ -10,6 +10,6 @@ _knn()
 _svm()
 _mlp()
 _naive_bayes()
-#_rnn_and_lstm(0)  #rnn
-#_rnn_and_lstm(1)  #lstm
-#_transformer()
+_rnn_and_lstm(0)  #rnn
+_rnn_and_lstm(1)  #lstm
+_transformer()
