@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB  
 from sklearn.naive_bayes import BernoulliNB  
 from sklearn.naive_bayes import ComplementNB  
-from base import baseline
+from trash.base import baseline
 def _naive_bayes(TF_ID):
     model = ComplementNB(alpha=1.1)
     baseline(model,TF_ID)

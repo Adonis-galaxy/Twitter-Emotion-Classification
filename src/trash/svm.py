@@ -1,6 +1,6 @@
 from sklearn import svm
 from sklearn.svm import SVC
-from base import baseline
+from trash.base import baseline
 import numpy as np
 
 def _svm(TF_ID):
