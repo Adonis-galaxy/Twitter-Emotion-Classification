@@ -1,4 +1,4 @@
-from data_process.fileloader import load_text, load_label
+from data_process import load_text, load_label
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 

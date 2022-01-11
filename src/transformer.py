@@ -6,8 +6,8 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.utils import to_categorical
 import tensorflow as tf
-from data_process.fileloader import load_text,load_label
-from data_process.build_histogram import histogram_building
+from data_process import load_text,load_label
+from data_process import histogram_building
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing import sequence
 

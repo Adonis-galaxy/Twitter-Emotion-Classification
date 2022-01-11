@@ -18,12 +18,12 @@ from matplotlib.font_manager import FontProperties
 import numpy as np
 from sklearn.neural_network import MLPRegressor
 import sys
-from data_process.text_preprocess import text_preprocessing
-from data_process.label_preprocess import label_preprocessing
+from data_process import text_preprocessing
+from data_process import label_preprocessing
 from train import training
 from test import testing
-from data_process.fileloader import load_text,load_label
-from data_process.build_histogram import histogram_building
+from data_process import load_text,load_label
+from data_process import histogram_building
 from feature_generator import feature_set
 from sklearn.svm import LinearSVC
 
