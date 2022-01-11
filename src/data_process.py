@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 import numpy as np
+from wordsegment import load, segment
 
 
 def data_loader(text):
@@ -60,8 +61,19 @@ def data_loader(text):
                 if 0 < i - start:
                     train_data[l].append(word[start:i].lower())
         l += 1
+    #load()
+    #for i in range(len(train_data)):
+    #    for j in range(len(train_data[i])):
+    #        p = segment(train_data[i][j])
+    #        if len(p) > 1:
+    #           train_data[i][j] = p[0]
+    #        train_data[i]+= p[1:]
     for i in range(len(train_data)):
         for j in range(len(train_data[i])):
+            if train_data[i][j][-1:] == 's':
+                train_data[i][j] = train_data[i][j][:-1]
+            if train_data[i][j][-1:] == 'e':
+                train_data[i][j] = train_data[i][j][:-1]
             try:
                 if train_data[i][j][-2:] == 'ly':
                     train_data[i][j] = train_data[i][j][:-2]
@@ -69,20 +81,23 @@ def data_loader(text):
                 if train_data[i][j][-2:] == 'ed':
                     train_data[i][j] = train_data[i][j][:-2]
                     continue
-                if train_data[i][j][-2:] == 'er':
+                if train_data[i][j][-2:] == 'al':
                     train_data[i][j] = train_data[i][j][:-2]
                     continue
-                if train_data[i][j][-2:] == 'es':
+                if train_data[i][j][-2:] == 'er':
                     train_data[i][j] = train_data[i][j][:-2]
                     continue
                 if train_data[i][j][-3:] == 'ing':
                     train_data[i][j] = train_data[i][j][:-3]
                     continue
+                if train_data[i][j][-3:] == 'ion':
+                    train_data[i][j] = train_data[i][j][:-3]
+                    continue
                 if train_data[i][j][-3:] == 'ful':
                     train_data[i][j] = train_data[i][j][:-3]
                     continue
-                if train_data[i][j][-4:] == 'ness':
-                    train_data[i][j] = train_data[i][j][:-4]
+                if train_data[i][j][-3:] == 'nes':
+                    train_data[i][j] = train_data[i][j][:-3]
                     continue
                 if train_data[i][j][-4:] == 'tion':
                     train_data[i][j] = train_data[i][j][:-4]
@@ -90,11 +105,8 @@ def data_loader(text):
                 if train_data[i][j][-4:] == 'ment':
                     train_data[i][j] = train_data[i][j][:-4]
                     continue
-
             except:
                 pass
-            if (train_data[i][j][-1:] == 's' and train_data[i][j][-2:-1] != 's') or train_data[i][j][-1:] == 'e':
-                train_data[i][j] = train_data[i][j][:-1]
     for i in range(len(train_data)):
         for j in range(len(train_data[i])):
             k = 0
