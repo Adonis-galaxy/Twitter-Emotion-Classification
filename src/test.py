@@ -71,14 +71,14 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
         with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/correct.txt","w") as f:
             try:
                 for i in range(10):
-                    f.write(correct_prediction[k][i])
+                    f.write(" ".join(correct_prediction[k][i]))
                     f.write("\n")
             except IndexError:
                 pass
         with open(r"./example/"+model_names[model_index] + r"/"+motions[k]+r"/wrong.txt","w") as f:
             try:
-                for i in range(10):
-                    f.write(wrong_prediction[k][i][0])
+                for i in range(100):
+                    f.write(" ".join(wrong_prediction[k][i][0]))
                     f.write(" || Ground truth: ")
                     f.write(wrong_prediction[k][i][1])
                     f.write("\n")
@@ -91,4 +91,3 @@ def testing(model,test_data,test_labels,num_test,row_test_data):
     with open(r"./example/"+model_names[model_index] + r"/m_F1.txt","w") as f:
         f.write(str(sum(precision)/4))
     return true_test/num_test
-    

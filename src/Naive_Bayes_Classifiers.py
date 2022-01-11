@@ -24,7 +24,7 @@ from train import training
 from test import testing
 from data_process import load_text,load_label
 from data_process import histogram_building
-from feature_generator import feature_set
+from feature_generator import feature_extractor
 from sklearn.svm import LinearSVC
 
 class Naive_Bayes_Classifiers():
@@ -50,7 +50,8 @@ class Naive_Bayes_Classifiers():
         histogram = histogram_building(train_text, bag=1)
         num_feature = len(histogram) # 12887
         if TF_ID:
-            tokens = feature_set()
+            pass
+            #tokens = feature_set()
         else:
             tokens = list(histogram.index)
         print("dimension = ", len(tokens))
@@ -60,4 +61,3 @@ class Naive_Bayes_Classifiers():
         training(model,train_data,train_labels,num_train,val_data,val_labels,num_val)
         test_acc=testing(model,test_data,test_labels,num_test,test_text)
         return test_acc
-        
