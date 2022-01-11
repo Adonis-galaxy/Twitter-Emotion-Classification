@@ -32,7 +32,7 @@ class Naive_Bayes_Classifiers():
         model = KNeighborsClassifier(n_neighbors=4)
         Naive_Bayes_Classifiers.baseline(model,TF_ID)
     def _svm(TF_ID):
-        model = svm.LinearSVC(penalty='l2', dual=False, max_iter=5, tol=1e-3,random_state=264, fit_intercept=True)
+        model = svm.LinearSVC(penalty='l1', dual=False, max_iter=5, tol=1e-3,random_state=38, fit_intercept=True)
         Naive_Bayes_Classifiers.baseline(model,TF_ID)
     def _mlp(TF_ID):
         model = MLPRegressor(hidden_layer_sizes=(16),  activation='relu', solver='adam', max_iter=10)

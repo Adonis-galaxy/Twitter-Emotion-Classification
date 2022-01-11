@@ -8,7 +8,7 @@ def data_loader(text):
     train_data = []
     l = 0
     for sentence in train_text:
-        words = re.split(r'[“:;,.!#?*()\s]\s*', sentence)
+        words = re.split(r'[“\[\]\-:;,.@!#?*–~()\s]\s*', sentence)
         train_data.append([])
         for word in words:
             if word == '':
@@ -22,25 +22,70 @@ def data_loader(text):
                     word = word[:-1]
                     break
                 if word[i:i+2] == '\\n':
-                    if start != i:
+                    if 0 < i - start:
                         train_data[l].append(word[start:i].lower())
                     start = i + 2
                     i = i + 1
+                    continue
+                if word[i] == '/':
+                    if 0 < i - start:
+                        train_data[l].append(word[start:i].lower())
+                    start = i + 1
+                    continue
                 if ord(word[i]) > 10000:
                     if word[i] != '❤':
-                        if start != i:
+                        if 0 < i - start:
                             train_data[l].append(word[start:i].lower())
                         train_data[l].append(word[i])
                         start = i + 1
                     else:
-                        if start != i:
+                        if 0 < i - start:
                             train_data[l].append(word[start:i].lower())
                         train_data[l].append(word[i:i+2])
                         start = i + 2
                         i = i + 1
-            if start != len(word):
-                train_data[l].append(word[start:len(word)].lower())
+                        continue
+                if '0' <= word[i] <= '9':
+                    if 0 < i - start:
+                        train_data[l].append(word[start:i].lower())
+                    while '0' <= word[i] <= '9':
+                        i = i + 1
+                        if i == len(word):
+                            break
+                        continue
+                    i = i - 1
+                    start = i + 1
+            i = len(word)
+            if start != i:
+                if 0 < i - start:
+                    train_data[l].append(word[start:i].lower())
         l += 1
+    for i in range(len(train_data)):
+        for j in range(len(train_data[i])):
+            try:
+                if train_data[i][j][-2:] == 'ly':
+                    train_data[i][j] = train_data[i][j][:-2]
+                    continue
+                if train_data[i][j][-2:] == 'ed':
+                    train_data[i][j] = train_data[i][j][:-2]
+                    continue
+                if train_data[i][j][-2:] == 'es':
+                    train_data[i][j] = train_data[i][j][:-2]
+                    continue
+                if train_data[i][j][-3:] == 'ing':
+                    train_data[i][j] = train_data[i][j][:-3]
+                    continue
+                if train_data[i][j][-3:] == 'ful':
+                    train_data[i][j] = train_data[i][j][:-3]
+                    continue
+                if train_data[i][j][-4:] == 'ness':
+                    train_data[i][j] = train_data[i][j][:-4]
+                    continue
+            except:
+                pass
+            if (train_data[i][j][-1:] == 's' and train_data[i][j][-2:-1] != 's') or train_data[i][j][-1:] == 'e':
+                train_data[i][j] = train_data[i][j][:-1]
+
     return train_data
 
 
