@@ -23,23 +23,23 @@ def data_loader(text):
                     break
                 if word[i:i+2] == '\\n':
                     if start != i:
-                        train_data[l].append(word[start:i])
+                        train_data[l].append(word[start:i].lower())
                     start = i + 2
                     i = i + 1
                 if ord(word[i]) > 10000:
                     if word[i] != '❤':
                         if start != i:
-                            train_data[l].append(word[start:i])
+                            train_data[l].append(word[start:i].lower())
                         train_data[l].append(word[i])
                         start = i + 1
                     else:
                         if start != i:
-                            train_data[l].append(word[start:i])
+                            train_data[l].append(word[start:i].lower())
                         train_data[l].append(word[i:i+2])
                         start = i + 2
                         i = i + 1
             if start != len(word):
-                train_data[l].append(word[start:len(word)])
+                train_data[l].append(word[start:len(word)].lower())
         l += 1
     return train_data
 
