@@ -22,9 +22,8 @@ from data_process import text_preprocessing
 from data_process import label_preprocessing
 from train import training
 from test import testing
-from data_process import load_text,load_label
+from data_process import load_text,load_label, feature_extractor
 from data_process import histogram_building
-from feature_generator import feature_extractor
 from sklearn.svm import LinearSVC
 
 class Naive_Bayes_Classifiers():
@@ -55,7 +54,7 @@ class Naive_Bayes_Classifiers():
         else:
             tokens = list(histogram.index)
         print("dimension = ", len(tokens))
-        train_data,num_train = text_preprocessing(train_text,tokens,num_feature, bag=1)
+        train_data,num_train = feature_extractor()
         val_data,num_val = text_preprocessing(val_text,tokens,num_feature, bag=1)
         test_data,num_test = text_preprocessing(test_text,tokens,num_feature, bag=1)
         training(model,train_data,train_labels,num_train,val_data,val_labels,num_val)
