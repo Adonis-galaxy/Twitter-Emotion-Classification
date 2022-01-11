@@ -69,6 +69,9 @@ def data_loader(text):
                 if train_data[i][j][-2:] == 'ed':
                     train_data[i][j] = train_data[i][j][:-2]
                     continue
+                if train_data[i][j][-2:] == 'er':
+                    train_data[i][j] = train_data[i][j][:-2]
+                    continue
                 if train_data[i][j][-2:] == 'es':
                     train_data[i][j] = train_data[i][j][:-2]
                     continue
@@ -81,10 +84,29 @@ def data_loader(text):
                 if train_data[i][j][-4:] == 'ness':
                     train_data[i][j] = train_data[i][j][:-4]
                     continue
+                if train_data[i][j][-4:] == 'tion':
+                    train_data[i][j] = train_data[i][j][:-4]
+                    continue
+                if train_data[i][j][-4:] == 'ment':
+                    train_data[i][j] = train_data[i][j][:-4]
+                    continue
+
             except:
                 pass
             if (train_data[i][j][-1:] == 's' and train_data[i][j][-2:-1] != 's') or train_data[i][j][-1:] == 'e':
                 train_data[i][j] = train_data[i][j][:-1]
+    for i in range(len(train_data)):
+        for j in range(len(train_data[i])):
+            k = 0
+            while k < len(train_data[i][j]) - 1:
+                while train_data[i][j][k] == train_data[i][j][k + 1]:
+                    if k + 1 == len(train_data[i][j]):
+                        train_data[i][j] = train_data[i][j][:k + 1]
+                    else:
+                        train_data[i][j] = train_data[i][j][:k + 1] + train_data[i][j][k + 2:]
+                    if k >= len(train_data[i][j]) - 1:
+                        break
+                k += 1
 
     return train_data
 
