@@ -2,11 +2,11 @@
 # from transformer import _transformer
 TF_ID = False
 from Naive_Bayes_Classifiers import Naive_Bayes_Classifiers
+from DNN_Based_Classification import _RNN, _LSTM, _Transformer
 Naive_Bayes_Classifiers._knn(TF_ID)
 Naive_Bayes_Classifiers._svm(TF_ID)
 Naive_Bayes_Classifiers._mlp(TF_ID)
 Naive_Bayes_Classifiers._naive_nayes_mle(TF_ID)
-
-# _rnn_and_lstm(0)  #rnn
-# _rnn_and_lstm(1)  #lstm
-# _transformer()
+_RNN()
+_LSTM()
+_Transformer()
