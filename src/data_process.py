@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 import numpy as np
+from wordsegment import load, segment
 
 
 def data_loader(text):
@@ -60,8 +61,19 @@ def data_loader(text):
                 if 0 < i - start:
                     train_data[l].append(word[start:i].lower())
         l += 1
+    load()
     for i in range(len(train_data)):
         for j in range(len(train_data[i])):
+            p = segment(train_data[i][j])
+            if len(p) > 1:
+               train_data[i][j] = p[0]
+            train_data[i]+= p[1:]
+    for i in range(len(train_data)):
+        for j in range(len(train_data[i])):
+            if train_data[i][j][-1:] == 's':
+                train_data[i][j] = train_data[i][j][:-1]
+            if train_data[i][j][-1:] == 'e':
+                train_data[i][j] = train_data[i][j][:-1]
             try:
                 if train_data[i][j][-2:] == 'ly':
                     train_data[i][j] = train_data[i][j][:-2]
@@ -69,22 +81,41 @@ def data_loader(text):
                 if train_data[i][j][-2:] == 'ed':
                     train_data[i][j] = train_data[i][j][:-2]
                     continue
-                if train_data[i][j][-2:] == 'es':
+                if train_data[i][j][-2:] == 'al':
+                    train_data[i][j] = train_data[i][j][:-2]
+                    continue
+                if train_data[i][j][-2:] == 'er':
                     train_data[i][j] = train_data[i][j][:-2]
                     continue
                 if train_data[i][j][-3:] == 'ing':
                     train_data[i][j] = train_data[i][j][:-3]
                     continue
+                if train_data[i][j][-3:] == 'ion':
+                    train_data[i][j] = train_data[i][j][:-3]
+                    continue
                 if train_data[i][j][-3:] == 'ful':
                     train_data[i][j] = train_data[i][j][:-3]
                     continue
-                if train_data[i][j][-4:] == 'ness':
+                if train_data[i][j][-3:] == 'nes':
+                    train_data[i][j] = train_data[i][j][:-3]
+                    continue
+                if train_data[i][j][-4:] == 'ment':
                     train_data[i][j] = train_data[i][j][:-4]
                     continue
             except:
                 pass
-            if (train_data[i][j][-1:] == 's' and train_data[i][j][-2:-1] != 's') or train_data[i][j][-1:] == 'e':
-                train_data[i][j] = train_data[i][j][:-1]
+    for i in range(len(train_data)):
+        for j in range(len(train_data[i])):
+            k = 0
+            while k < len(train_data[i][j]) - 1:
+                while train_data[i][j][k] == train_data[i][j][k + 1]:
+                    if k + 1 == len(train_data[i][j]):
+                        train_data[i][j] = train_data[i][j][:k + 1]
+                    else:
+                        train_data[i][j] = train_data[i][j][:k + 1] + train_data[i][j][k + 2:]
+                    if k >= len(train_data[i][j]) - 1:
+                        break
+                k += 1
 
     return train_data
 
@@ -138,6 +169,51 @@ after preprocess:
     [0,1,0,0]
 ]
 """
+
+
+def feature_extractor():
+    data = load_text("train_text")
+    histogram = histogram_building(data)
+    feature = list(histogram.index)
+    l = len(feature)
+    num = [0 for _ in range(l)]
+    for i in range(l):
+        for sentence in data:
+            if feature[i] in sentence:
+                num[i] += 1
+    scores = []
+    train_data, num_train = text_preprocessing(data, feature, l, bag=1)
+    for i in range(len(data)):
+        scores.append([])
+        s = []
+        for j in range(len(data[i])):
+            if data[i][j] not in s:
+                s.append(data[i][j])
+            else:
+                continue
+            word = data[i][j]
+            index = feature.index(word)
+            idf = np.log(l/(num[index] + 1))
+            TF = train_data[index, i]
+            TF_IDF = TF * idf
+            scores[i].append((TF_IDF, data[i][j]))
+        scores[i].sort(key=lambda x: -x[0])
+    vec = np.zeros(shape=(l, len(data)))
+    for i in range(len(data)):
+        s = []
+        for j in range(min(10, len(scores[i]))):
+            index = scores[i][j][1]
+            s.append(index)
+        words = data[i]
+        for j in range(len(words)):
+            try:
+                if words[j] in s:
+                    index = feature.index(words[j])
+                    vec[index, i] += 1
+            except ValueError:  # some data in val may not appear in training set
+                pass
+    return vec, len(data)
+
 
 def text_preprocessing(text,tokens,num_feature, bag=1):
     num_data = len(text)
