@@ -4,7 +4,7 @@ from sklearn import svm
 import sklearn
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
-from data_process.label_preprocess import label_preprocessing
+from data_process import label_preprocessing
 def training(model,train_data,train_labels,num_train,val_data,val_labels,num_val):
     print("\ntype of the model:",type(model))
     if type(model) == MLPRegressor:

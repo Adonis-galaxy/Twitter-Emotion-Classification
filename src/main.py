@@ -1,10 +1,12 @@
-# model_names=['knn','svm','mlp','naive_bayes']
-from knn import _knn
-from svm import _svm
-from mlp import _mlp
-from naive_bayes import _naive_bayes
-
-_knn()
-_svm()
-_mlp()
-_naive_bayes()
+# from new_keras_rnn import _rnn_and_lstm
+# from transformer import _transformer
+TF_ID = False
+from Naive_Bayes_Classifiers import Naive_Bayes_Classifiers
+from DNN_Based_Classification import _RNN, _LSTM, _Transformer
+Naive_Bayes_Classifiers._knn(TF_ID)
+Naive_Bayes_Classifiers._svm(TF_ID)
+Naive_Bayes_Classifiers._mlp(TF_ID)
+Naive_Bayes_Classifiers._naive_nayes_mle(TF_ID)
+_RNN()
+_LSTM()
+_Transformer()
